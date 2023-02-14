@@ -1,0 +1,26 @@
+# Write your MySQL query statement below
+# Thanks you in discussion and solution
+
+# select name because output want to be Employee
+select a.name as Employee
+# Need to compare
+# Compare table within table (like duplicate table)
+# know that process from youtube and that weird,
+# now i know why that exist
+from Employee as a
+        ,Employee as b
+
+where a.ManagerID = b.Id
+and a.Salary > b.Salary
+
+_______________________________________________________________________________________________________________________________________________
+# Solution for beginner
+# https://leetcode.com/problems/employees-earning-more-than-their-managers/solutions/2515468/simple-solution-for-beginners-detailed-with-notes/
+# thanks you ericzarycki for detail solution
+
+SELECT e2.name as Employee
+FROM employee e1
+INNER JOIN employee e2 ON e1.id = e2.managerID
+WHERE
+e1.salary < e2.salary
+_______________________________________________________________________________________________________________________________________________
