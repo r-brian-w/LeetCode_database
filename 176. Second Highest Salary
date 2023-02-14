@@ -1,0 +1,39 @@
+# Write your MySQL query statement below
+# Thank you Riya2909 for solution case 2
+
+# Case 1
+select max(salary)
+from Employee
+where salary < (select max(salary) from Employee)
+
+# Case 2
+select max(salary)
+from Employee
+where salary not in (select max(salary) from Employee)
+
+------------------------------------------------------------------------------------
+# Solution from LeetCode
+MySQL
+
+SELECT
+    (SELECT DISTINCT
+            Salary
+        FROM
+            Employee
+        ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1) AS SecondHighestSalary
+;
+------------------------------------------------------------------------------------
+Approach: Using IFNULL and LIMIT clause [Accepted]
+Another way to solve the 'NULL' problem is to use IFNULL function as below.
+
+MySQL
+
+SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1),
+    NULL) AS SecondHighestSalary
+------------------------------------------------------------------------------------
