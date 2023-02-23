@@ -1,0 +1,24 @@
+# Write your MySQL query statement below
+SELECT name
+FROM Customer
+WHERE referee_id != 2 or referee_id is null
+
+#Official Solution
+#MySQL
+SELECT name FROM customer WHERE referee_id <> 2 OR referee_id IS NULL;
+#or
+SELECT name FROM customer WHERE referee_id != 2 OR referee_id IS NULL;
+
+#Other Solution
+#Thanks flgqz0305
+SELECT name
+FROM customer
+WHERE IFNULL(referee_id, 0) <> 2
+
+#Thanks ye15
+SELECT name 
+FROM Customer
+WHERE COALESCE(referee_id, 0) != 2;
+
+# IFNULL and COALESCE HAVE SAME FUNCTION 
+# TO REPLACE NULL VALUE WITH SOMETHING
