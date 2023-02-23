@@ -1,5 +1,6 @@
 # Write your MySQL query statement below
 # THANKS 123456789zilan FOR DISTINCT LINE
+# use distinct to exclude duplicate student
 SELECT class
 FROM Courses
 GROUP BY class
