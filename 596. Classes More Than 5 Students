@@ -1,0 +1,20 @@
+# Write your MySQL query statement below
+# THANKS 123456789zilan FOR DISTINCT LINE
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING count(distinct(student)) >= 5
+
+# Write your MySQL query statement below
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING count(student) >= 5
+
+WITHOUT =(equal to) IT WAS WRONG
+
+# Write your MySQL query statement below
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING count(student) > 5
