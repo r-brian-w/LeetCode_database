@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+# THANKS OFFICIAL LEETCODE
+UPDATE salary
+SET
+    sex = 
+    CASE sex
+    WHEN 'm' THEN 'f'
+    ELSE 'm'
+END
