@@ -1,0 +1,7 @@
+# Write your MySQL query statement below
+# THANKS OFFICIAL LEETCODE FOR MOD LINE
+# MOD USED FOR EVEN AND ODD NUMBER
+SELECT *
+FROM Cinema
+WHERE mod(id, 2) = 1 AND description != 'boring'
+ORDER BY rating desc
