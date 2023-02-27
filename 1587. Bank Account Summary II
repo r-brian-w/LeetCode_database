@@ -1,0 +1,34 @@
+# Write your MySQL query statement below
+# NOT WORKING
+
+SELECT u.name, sum(t.amount) as balance
+FROM Users as u
+LEFT JOIN Transactions as t on u.account = t.account
+HAVING sum(t.amount) > 10000
+GROUP BY t.account
+
+# THIS ONE WORKS
+# GROUP BY FIRST THEN HAVING 
+# Write your MySQL query statement below
+SELECT u.name, sum(t.amount) as balance
+FROM Users as u
+LEFT JOIN Transactions as t on u.account = t.account
+GROUP BY t.account
+HAVING sum(t.amount) > 10000
+
+# WORKING SOLUTION
+# THANKS chrisg
+
+select
+    a.name,
+    sum(b.amount) balance
+from
+    Users a
+join
+    Transactions b
+on
+    a.account = b.account
+group by
+    a.account
+having
+    balance > 10000;
