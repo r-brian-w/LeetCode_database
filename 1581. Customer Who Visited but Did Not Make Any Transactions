@@ -1,0 +1,32 @@
+# Write your MySQL query statement below
+# NOT WORKING
+# WRONG IN WHERE LINE
+SELECT v.visit_id as customer_id, count(distinct(t.visit_id)) as count_no_trans
+FROM Visits as v
+LEFT JOIN Transactions as t on v.visit_id = t.visit_id
+WHERE customer_id NOT IN t.visit_id
+GROUP BY v.visit_id
+
+
+# THERE 3 SOLUTION FROM AleksandrEfimenko
+# THANKS AleksandrEfimenko
+SELECT customer_id, COUNT(v.visit_id) as count_no_trans 
+FROM Visits v
+LEFT JOIN Transactions t ON v.visit_id = t.visit_id
+WHERE transaction_id IS NULL
+GROUP BY customer_id
+
+SELECT customer_id, COUNT(visit_id) as count_no_trans 
+FROM Visits
+WHERE visit_id NOT IN (
+	SELECT visit_id FROM Transactions
+	)
+GROUP BY customer_id
+
+SELECT customer_id, COUNT(visit_id) as count_no_trans 
+FROM Visits v
+WHERE NOT EXISTS (
+	SELECT visit_id FROM Transactions t 
+	WHERE t.visit_id = v.visit_id
+	)
+GROUP BY customer_id
