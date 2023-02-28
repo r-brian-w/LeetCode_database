@@ -1,0 +1,27 @@
+# Write your MySQL query statement below
+# NOT WORKING
+# I DONT KNOW WHY IT WRONG
+SELECT user_id, max(time_stamp) as last_stamp
+FROM Logins
+HAVING time_stamp like '2020%'
+GROUP BY user_id
+
+# THIS ONE WORK
+# THANKS nireekshshetty FOR USING LIKE CODE
+SELECT user_id
+       ,max(time_stamp) as last_stamp
+FROM Logins
+WHERE time_stamp like '2020%'
+GROUP BY user_id
+
+# USING WHERE, NOT HAVING
+
+# THIS ONE WORK TOO
+# SIMPLE
+# THANKS raverboy42 FOR CODE
+SELECT
+    user_id,
+    MAX(time_stamp) AS last_stamp #obtaining latest login for all users
+FROM Logins
+WHERE YEAR(time_stamp) = 2020 #filtering for login dates with year 2020 in timestamp
+GROUP BY user_id;
