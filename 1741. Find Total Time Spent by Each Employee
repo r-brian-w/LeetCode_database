@@ -1,0 +1,17 @@
+# Write your MySQL query statement below
+# WRONG ON ONE DATA
+# EXCEPT THAT EVERYTHING WORK
+SELECT event_day as day
+       ,emp_id
+       ,out_time-in_time as total_time
+FROM Employees
+GROUP BY event_day, emp_id
+
+# RIGHT ANSWER
+# THANKS duylamnguyen FOR SUM LINE
+# Write your MySQL query statement below
+SELECT event_day as day
+       ,emp_id
+       ,SUM(out_time) - SUM(in_time) as total_time
+FROM Employees
+GROUP BY event_day, emp_id
