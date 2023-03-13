@@ -14,3 +14,27 @@ select b.stock_name
 from buy as b
 left join sell as s on b.stock_name = s.stock_name
 group by b.stock_name
+
+___________________________________________________
+# MORE SIMPLE 
+# THANKS ttsugrii FOR THE CODE
+
+SELECT stock_name, 
+        SUM(
+            CASE
+                WHEN operation = 'Buy' THEN -price
+                ELSE price
+            END
+           ) AS capital_gain_loss
+FROM Stocks
+GROUP BY stock_name
+___________________________________________________
+# MORE SIMPLE
+# THANKS ashishkjha FOR THE CODE
+
+select stock_name
+          , sum(
+                if(operation = 'Buy', -1, 1) * price) as capital_gain_loss
+from stocks
+group by stock_name
+___________________________________________________
