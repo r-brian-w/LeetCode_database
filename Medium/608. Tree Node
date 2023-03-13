@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+# THANKS Praan2103 FOR LOGICAL THINKING IN CASE WHEN
+
+select id
+        , CASE
+            WHEN p_id is NULL THEN 'Root'  
+            WHEN id IN (select p_id from Tree) THEN 'Inner' 
+            ELSE 'Leaf'
+          END 
+          AS type
+from Tree
