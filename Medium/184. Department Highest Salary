@@ -1,0 +1,14 @@
+# Write your MySQL query statement below
+# Thanks Prabal_Nair for added code departmentId in where line
+# WHY NEED TO ADD DEPARTMENTID IN WHERE LINE? I STILL DONT KNOW
+
+select d.name as Department
+        , e.name as Employee
+        , salary as Salary
+from Employee as e
+join Department as d on e.departmentId = d.id
+where (departmentId,salary) IN (select d.id
+                                        , max(e.salary) 
+                                from Employee as e
+                                join Department as d on e.departmentId = d.id
+                                group by d.name)
