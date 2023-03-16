@@ -1,0 +1,38 @@
+# Write your MySQL query statement below
+with cte as (select e.id as id
+                    , e.name as name
+                    , e.salary as salary
+                    , e.departmentID as departmentID
+                    , d.name as department
+                    , dense_rank() over(partition by d.name order by e.salary desc) as ranking
+             from Employee as e
+             left join Department as d on e.departmentId = d.id)
+select department as Department
+        , name as Employee
+        , salary as Salary
+from cte
+where ranking < 4 # CAN CHANGE IT TO <=3
+
+# THINK LIKE THIS BUT DONT KNOW HOW TO WRITE IT, SO I WRITE USING CTE 
+# THANKS lianj FOR CODE
+
+select b.Name as Department, a.Name as Employee, Salary
+from
+(select *, dense_rank() over(partition by DepartmentId order by Salary DESC) as ranks
+from Employee) a
+join Department b
+on a.DepartmentId = b.Id
+where ranks <= 3
+
+# MORE SIMPLE SOLUTION
+# THANKS baiji FOR CODE
+
+select d.Name Department, e1.Name Employee, e1.Salary
+from Employee e1 
+join Department d
+on e1.DepartmentId = d.Id
+where 3 > (select count(distinct(e2.Salary)) 
+                  from Employee e2 
+                  where e2.Salary > e1.Salary 
+                  and e1.DepartmentId = e2.DepartmentId
+                  );
